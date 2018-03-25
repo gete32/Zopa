@@ -1,11 +1,17 @@
 package util;
 
 import constants.FormFieldsEnum;
+import entity.Lender;
+import entity.Summable;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class FormatUtil {
 
@@ -34,6 +40,10 @@ public class FormatUtil {
         return new BigDecimal(value);
     }
 
+    public static BigDecimal toBigDecimal(Double value, int scale){
+        return BigDecimal.valueOf(value).setScale(scale, RoundingMode.HALF_UP);
+    }
+
     public static Integer toInteger(String value) {
         return Integer.valueOf(value);
     }
@@ -44,5 +54,14 @@ public class FormatUtil {
         if (BigDecimal.class.equals(aClass)) return (T) toBigDecimal(value);
         if (Integer.class.equals(aClass)) return (T) toInteger(value);
         return (T) value;
+    }
+
+    public static List<Lender> convert(Collection<? extends Summable> summables){
+        return summables.stream().map(e -> ((Lender) e)).collect(Collectors.toList());
+    }
+
+    public static boolean equalsDecim(BigDecimal v1, BigDecimal v2) {
+        return v1 != null && v2 != null &&
+                v1.setScale(2, RoundingMode.HALF_UP).compareTo(v2.setScale(2, RoundingMode.HALF_UP)) == 0;
     }
 }

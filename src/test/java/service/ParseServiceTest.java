@@ -39,9 +39,8 @@ class ParseServiceTest extends AbstractServiceTest {
     @ValueSource(strings = {"testCSV.csv"})
     void testCsvOrdering(String file) {
         List<Lender> lenders = service.parse(getUrl(file).getFile());
-        for (Lender lender : lenders) {
+        for (Lender lender : lenders)
             assertEquals(lender, lenderMap.get(lender.getLender()));
-        }
     }
 
 }

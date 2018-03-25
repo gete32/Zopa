@@ -30,18 +30,16 @@ public class Sum {
 
     public Sum remove() {
         this.removed.add(this.state);
-        this.state = this.state > 0 ? this.state - 1 : 0;
         return this;
     }
 
-    public Sum decrease(){
-        remove();
+    public Sum decrease() {
         this.sum -= get(state).getValue();
         return this;
     }
 
     public List<? extends Summable> getRest() {
-        return IntStream.range(0, values.size())
+        return IntStream.range(state, values.size())
                 .filter(i -> !removed.contains(i))
                 .mapToObj(values::get)
                 .collect(Collectors.toList());
@@ -51,11 +49,16 @@ public class Sum {
         return sum;
     }
 
-    public Summable get(int index){
+    public Summable get(int index) {
         return values.get(index);
     }
 
     public int getState() {
         return state;
+    }
+
+    public Sum stateDecrement(){
+        this.state = this.state > 0 ? this.state - 1 : 0;
+        return this;
     }
 }

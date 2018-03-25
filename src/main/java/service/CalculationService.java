@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface CalculationService<T extends Summable> {
 
-    List<Sum> calculate(List<T> values, Integer sum);
+    List<? extends Summable> calculate(List<T> values, Integer sum);
+
 }
