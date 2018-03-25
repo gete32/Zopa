@@ -2,9 +2,9 @@ package service;
 
 import entity.Lender;
 
-import java.util.Set;
+import java.util.List;
 
 public interface ParseService {
 
-    Set<Lender> parse(String file);
+    List<Lender> parse(String file);
 }

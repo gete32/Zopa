@@ -1,10 +1,10 @@
 package service;
 
-import entity.Lender;
+import entity.Summable;
 
 import java.util.List;
 
-public interface CalculationService {
+public interface CalculationService<T extends Summable> {
 
-    List<Lender> calculate(List<Lender> lenders, int target);
+    List<Sum> calculate(List<T> values, Integer sum);
 }

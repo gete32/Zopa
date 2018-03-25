@@ -51,9 +51,9 @@ public class ParseServiceImpl implements ParseService {
      * {@inheritDoc}
      */
     @Override
-    public Set<Lender> parse(String path) {
+    public List<Lender> parse(String path) {
         File file = new File(path);
-        Set<Lender> lenders = new TreeSet<>();
+        List<Lender> lenders = new ArrayList<>();
         try (CSVParser parser = CSVParser.parse(file, Charset.defaultCharset(), CSV_FORMAT)){
             Map<FileFieldsEnum, Integer> header = convertHeader(parser.getHeaderMap());
             for (CSVRecord record : parser)

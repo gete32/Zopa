@@ -5,7 +5,7 @@ import util.FormatUtil;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Lender implements Comparable<Lender>{
+public class Lender implements Comparable<Lender>, Summable{
 
     private String lender;
     private BigDecimal rate;
@@ -68,5 +68,10 @@ public class Lender implements Comparable<Lender>{
     @Override
     public int compareTo(Lender o) {
         return this.getRate().compareTo(o.getRate());
+    }
+
+    @Override
+    public Integer getValue() {
+        return this.getAvailable();
     }
 }

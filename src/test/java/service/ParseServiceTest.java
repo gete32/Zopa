@@ -38,7 +38,7 @@ class ParseServiceTest extends AbstractServiceTest {
     @ParameterizedTest
     @ValueSource(strings = {"testCSV.csv"})
     void testCsvOrdering(String file) {
-        Set<Lender> lenders = service.parse(getUrl(file).getFile());
+        List<Lender> lenders = service.parse(getUrl(file).getFile());
         for (Lender lender : lenders) {
             assertEquals(lender, lenderMap.get(lender.getLender()));
         }
